@@ -73,7 +73,7 @@ function displayBotResponse(data) {
         } else {
             clearInterval(interval); // Stop once the response is fully revealed
         }
-    }, 30);
+    }, 2);
 }
 
 // Function to display an error message in the chat

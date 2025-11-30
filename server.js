@@ -15,6 +15,7 @@ if (!process.env.GEMINI_API_KEY) {
 }
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -25,8 +26,6 @@ app.post("/get", uploads.single("file"), async (req, res) => {
     const file = req.file;
 
     try {
-        const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
-
         let prompt = [userInput];
 
         if (file) {
@@ -56,5 +55,4 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log("server started on : ", PORT);
-    
-})
+});
