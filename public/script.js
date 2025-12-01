@@ -70,8 +70,10 @@ function displayBotResponse(data) {
     const interval = setInterval(() => {
         if (index < data.length) {
             botMessageDiv.textContent += data[index++]; // Gradually add characters
+            scrollToBottom();
         } else {
             clearInterval(interval); // Stop once the response is fully revealed
+            scrollToBottom();
         }
     }, 2);
 }
@@ -104,7 +106,12 @@ function attachEventListeners() {
     // Store selected file
     fileInput.addEventListener("change", (event) => {
         selectedFile = event.target.files[0];
-        appendMessage("user", `Selected File: ${selectedFile.name}`);
+        if (selectedFile && selectedFile.type.startsWith("image/")) {
+            const imgURL = URL.createObjectURL(selectedFile);
+            appendMessage("user", `<img src="${imgURL}" class="preview-img" />`);
+        } else {
+            appendMessage("user", `📁 ${selectedFile.name}`);
+        }
     });
 }
 

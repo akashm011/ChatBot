@@ -24,11 +24,28 @@ body, html {
     flex: 1;
     display: flex;
     flex-direction: column;
+    max-height: 70vh;
     padding: 20px;
     overflow-y: auto;
     gap: 10px;
+    scroll-behavior: smooth;
   }
-  
+    
+  .preview-img {
+      max-width: 150px;      /* fit nicely in chat bubble */
+      max-height: 150px;
+      border-radius: 8px;
+      margin-top: 5px;
+  }
+
+  .message.user .preview-img {
+    border: 2px solid #4CAF50;
+  }
+
+  .message.model .preview-img {
+    border: 2px solid #007AFF;
+  }
+
   .message {
     display: flex;
     align-items: flex-start;
